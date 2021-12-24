@@ -46,7 +46,7 @@ const Room = () => {
   useEffect(() => {
     if (isLoggedIn && username && roomId) {
       fetch("/api/chat").finally(() => {
-        const socket = io();
+        const socket = io({ path: "/api/chat" });
         setChatSocket(socket);
 
         // User Joining
@@ -83,7 +83,9 @@ const Room = () => {
       });
     }
     return () => {
-      socket && socket.close();
+      if (chatSocket) {
+        chatSocket.close();
+      }
     };
   }, [roomId, username, isLoggedIn]);
 

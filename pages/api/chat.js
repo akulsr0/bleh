@@ -3,7 +3,7 @@ import Room from "../../models/Room";
 
 const ioHandler = (req, res) => {
   if (!res.socket.server.io) {
-    const io = new Server(res.socket.server);
+    const io = new Server(res.socket.server, { path: "/api/chat" });
 
     let users = [];
 
