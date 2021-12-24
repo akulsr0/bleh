@@ -82,6 +82,9 @@ const Room = () => {
         });
       });
     }
+    return () => {
+      socket && socket.close();
+    };
   }, [roomId, username, isLoggedIn]);
 
   return (
